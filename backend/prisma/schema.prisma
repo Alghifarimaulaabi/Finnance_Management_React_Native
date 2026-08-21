@@ -29,12 +29,12 @@ enum GoalStatus {
 // ─── Models ───────────────────────────────────────────────────────────────────
 
 /// Dompet / rekening user (Cash, Bank, E-wallet, dll.)
+/// Mata uang selalu IDR — tidak ada pilihan lain.
 model Account {
   id        String      @id @default(cuid())
   name      String
   type      AccountType
   balance   Decimal     @default(0) @db.Decimal(19, 4)
-  currency  String      @default("IDR")
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 

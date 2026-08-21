@@ -8,14 +8,14 @@ AI Agent harus mengikuti phase secara berurutan dan tidak melewati phase yang be
 
 ## Phase 1 — Project Foundation
 
-**Status:** In Progress
+**Status:** Done
 
 * [x] Setup React Native + Expo
-* [ ] Setup Express backend application
+* [x] Setup Express backend application
 * [x] Setup Prisma
-* [ ] Verifikasi koneksi PostgreSQL/Supabase
+* [x] Verifikasi koneksi PostgreSQL/Supabase
 * [x] Setup project structure
-* [ ] Setup environment runtime untuk backend dan frontend
+* [x] Setup environment runtime untuk backend dan frontend
 * [x] Setup Git
 * [x] Setup basic UI/design system
 
@@ -25,7 +25,7 @@ AI Agent harus mengikuti phase secara berurutan dan tidak melewati phase yang be
 
 ## Phase 2 — Database
 
-**Status:** In Progress
+**Status:** Done
 
 * [x] Membuat Prisma schema
 * [x] Membuat model `Account`
@@ -34,9 +34,9 @@ AI Agent harus mengikuti phase secara berurutan dan tidak melewati phase yang be
 * [x] Membuat model `Budget`
 * [x] Membuat model `FinancialGoal`
 * [x] Membuat relationships
-* [ ] Menjalankan migration
-* [ ] Membuat seed data untuk default categories
-* [ ] Menegakkan `IDR` sebagai satu-satunya mata uang pada input dan business logic
+* [x] Menjalankan migration
+* [x] Membuat seed data untuk default categories
+* [x] Menegakkan `IDR` sebagai satu-satunya mata uang pada input dan business logic
 
 **Output:** Database siap digunakan.
 
