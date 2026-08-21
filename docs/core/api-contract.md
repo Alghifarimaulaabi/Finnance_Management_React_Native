@@ -2,7 +2,14 @@
 
 Dokumen ini mendefinisikan kontrak API antara **React Native mobile app** dan **Express backend**.
 
-Aplikasi ini ditujukan untuk **penggunaan pribadi** dan tidak menggunakan sistem login atau authentication.
+Aplikasi ini ditujukan untuk **satu pengguna pribadi**, tidak menggunakan sistem login atau authentication, dan hanya menggunakan **IDR**.
+
+## Scope Mata Uang dan Nominal
+
+* Semua field nominal (`amount`, `balance`, `targetAmount`, dan `savedAmount`) bernilai Rupiah utuh dalam format JSON `number`.
+* Nilai nominal harus lebih besar atau sama dengan `0` sesuai konteks; nominal transaksi wajib lebih besar dari `0`.
+* API tidak menerima field `currency`, kurs, atau nilai mata uang selain IDR.
+* Tidak ada konversi mata uang atau perhitungan lintas mata uang.
 
 ## 1. Base URL
 

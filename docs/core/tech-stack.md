@@ -7,10 +7,7 @@
 - Expo Router
 - TypeScript
 - NativeWind
-- TanStack Query
-- Zustand
-- React Hook Form
-- Axios
+- React Native Reanimated
 
 ## Backend
 
@@ -23,12 +20,17 @@
 
 ## Development
 
-- pnpm
-- ESLint
-- Prettier
-- Jest
-- Supertest
-- React Native Testing Library
+- npm (terdapat `package-lock.json`)
+- TypeScript
+
+## Planned When Needed
+
+Library berikut belum menjadi dependensi proyek. Tambahkan hanya bila task membutuhkan kemampuan tersebut dan scope perubahan mengizinkannya:
+
+- TanStack Query untuk server state
+- Axios atau API client setara
+- React Hook Form untuk form kompleks
+- Jest, Supertest, dan React Native Testing Library untuk automated testing
 
 ## Build & Deployment
 

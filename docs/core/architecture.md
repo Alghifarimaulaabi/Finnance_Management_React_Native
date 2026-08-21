@@ -22,7 +22,7 @@ React Native + Expo
 * Expo
 * Expo Router
 * NativeWind
-* TanStack Query untuk server state jika diperlukan
+* API client dan server state ditambahkan saat integrasi backend dimulai; jangan mengasumsikan library tertentu sudah terpasang.
 
 ### Backend
 
@@ -126,11 +126,15 @@ FinancialGoal
 
 ## 6. Important Rules
 
+* Aplikasi bersifat **single-user** — tidak ada login atau authentication.
 * Backend menjadi source of truth untuk data keuangan.
+* Seluruh nominal aplikasi menggunakan **IDR**; tidak ada kurs atau konversi mata uang.
 * Perhitungan saldo dilakukan di backend.
 * Semua database operation melalui Prisma.
+* Nominal keuangan menggunakan `Decimal(19, 4)`.
 * API mengikuti kontrak pada `api-contract.md`.
 * Implementasi fitur mengikuti `features.md`.
 * Business rules mengikuti `requirements.md`.
-* Tidak menggunakan login atau authentication.
+* Design system mengikuti `frontend/DESIGN.md`.
 * Jangan menambahkan abstraction/library tanpa kebutuhan yang jelas.
+* Struktur pada bagian ini adalah struktur target. Keberadaan folder di dokumen bukan bukti bahwa implementasinya sudah ada; lihat `phases.md` dan kode.

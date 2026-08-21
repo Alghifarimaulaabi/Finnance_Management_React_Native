@@ -2,11 +2,13 @@
 
 Dokumen ini mendefinisikan kebutuhan fungsional dan aturan utama aplikasi **Personal Finance Management**.
 
+Aplikasi ini ditujukan untuk **satu pengguna pribadi**, tidak menggunakan login atau authentication, dan seluruh nominal menggunakan **Rupiah Indonesia (IDR)**.
+
 ## 1. Dashboard
 
 ### REQ-DASH-001 — Total Saldo
 
-* Sistem harus menampilkan total saldo seluruh account milik user.
+* Sistem harus menampilkan total saldo seluruh account.
 * Total saldo dihitung berdasarkan saldo setiap account.
 * Saldo harus diperbarui setelah transaksi berhasil dibuat, diubah, atau dihapus.
 
@@ -59,18 +61,13 @@ Sistem harus mendukung minimal:
 
 ### REQ-TRANS-004 — Edit Transaksi
 
-* User dapat mengubah transaksi miliknya.
+* User dapat mengubah transaksi.
 * Perubahan transaksi harus memperbarui saldo dan perhitungan terkait.
 
 ### REQ-TRANS-005 — Hapus Transaksi
 
-* User dapat menghapus transaksi miliknya.
+* User dapat menghapus transaksi.
 * Penghapusan transaksi harus memperbarui saldo dan analytics.
-
-### REQ-TRANS-006 — Ownership
-
-* User hanya dapat melihat dan memodifikasi transaksi miliknya sendiri.
-* User tidak boleh mengakses transaksi milik user lain.
 
 ---
 
@@ -92,11 +89,11 @@ Sistem harus menyediakan kategori default:
 
 * User dapat membuat kategori custom.
 * Nama kategori harus memiliki nilai.
-* Kategori harus terhubung dengan user yang membuatnya.
 
-### REQ-CAT-003 — Category Ownership
+### REQ-CAT-003 — Delete Category
 
-User hanya dapat mengubah atau menghapus custom category miliknya.
+* Default category tidak boleh dihapus.
+* Custom category dapat dihapus jika tidak digunakan oleh transaksi.
 
 ---
 
@@ -119,15 +116,17 @@ Setiap account harus memiliki saldo.
 
 Saldo harus diperbarui berdasarkan transaksi yang terkait dengan account tersebut.
 
-### REQ-ACC-003 — Account Ownership
+### REQ-ACC-003 — Mata Uang IDR
 
-User hanya dapat melihat dan mengubah account miliknya sendiri.
+* Semua account dan transaksi menggunakan mata uang `IDR`.
+* User tidak dapat memilih atau mengubah mata uang account.
+* Sistem tidak melakukan konversi kurs atau perhitungan lintas mata uang.
 
 ### REQ-ACC-004 — Account Deletion
 
-Account yang masih memiliki transaksi harus ditangani dengan aman sebelum dihapus.
+Account yang masih memiliki transaksi tidak boleh dihapus.
 
-Sistem tidak boleh menyebabkan transaksi menjadi tidak valid atau kehilangan referensi secara tidak terkontrol.
+Sistem harus menolak penghapusan dan memberikan pesan error yang jelas.
 
 ---
 
@@ -192,7 +191,7 @@ Progress           65%
 
 Sistem harus memberikan indikator ketika penggunaan budget mendekati limit.
 
-Default threshold dapat menggunakan:
+Default threshold:
 
 ```text
 80% → Warning
@@ -219,7 +218,7 @@ User dapat membuat target keuangan dengan:
 Sistem harus menghitung progress target berdasarkan:
 
 ```text
-progress = amountSaved / targetAmount × 100
+progress = savedAmount / targetAmount × 100
 ```
 
 ### REQ-GOAL-003 — Goal Completion
@@ -252,7 +251,7 @@ Sistem harus dapat menampilkan perkembangan saldo berdasarkan data transaksi.
 
 ## REQ-INSIGHT-001 — Generate Insight
 
-Sistem dapat menghasilkan insight berdasarkan data transaksi user.
+Sistem dapat menghasilkan insight berdasarkan data transaksi.
 
 Contoh:
 
@@ -262,7 +261,7 @@ Contoh:
 
 Insight hanya boleh menggunakan data transaksi yang tersedia.
 
-Sistem tidak boleh membuat angka atau informasi keuangan yang tidak berasal dari data user.
+Sistem tidak boleh membuat angka atau informasi keuangan yang tidak berasal dari data.
 
 ### REQ-INSIGHT-003 — Period Comparison
 
@@ -311,23 +310,13 @@ Jika nilai periode sebelumnya adalah `0`, sistem tidak boleh menghasilkan pembag
 
 # 11. General Requirements
 
-### REQ-GEN-001 — Authentication
+### REQ-GEN-001 — Single User
 
-User harus melakukan authentication sebelum mengakses data keuangan pribadi.
+Aplikasi ini adalah aplikasi **pribadi** dan tidak menggunakan sistem login, authentication, atau multi-user.
 
-### REQ-GEN-002 — Data Isolation
+Seluruh data bersifat global tanpa isolasi per user.
 
-Data keuangan setiap user harus terisolasi.
-
-User tidak boleh dapat mengakses:
-
-* Transaksi user lain
-* Account user lain
-* Category private user lain
-* Budget user lain
-* Financial goal user lain
-
-### REQ-GEN-003 — Data Consistency
+### REQ-GEN-002 — Data Consistency
 
 Perubahan transaksi harus konsisten terhadap:
 
@@ -337,23 +326,25 @@ Perubahan transaksi harus konsisten terhadap:
 * Analytics
 * Financial insight
 
-### REQ-GEN-004 — Error Handling
+### REQ-GEN-003 — Error Handling
 
 Sistem harus memberikan error yang jelas ketika:
 
 * Data tidak valid
 * Request gagal
 * Resource tidak ditemukan
-* User tidak memiliki permission
 
-### REQ-GEN-005 — Mobile First
+### REQ-GEN-004 — Mobile First
 
 Aplikasi harus dioptimalkan untuk penggunaan pada perangkat mobile.
 
-### REQ-GEN-006 — API Security
+### REQ-GEN-005 — Money Type Safety
 
-Backend harus melakukan validasi authentication dan authorization pada setiap endpoint yang membutuhkan data pribadi user.
+Nominal keuangan harus menggunakan tipe data `Decimal` yang aman untuk perhitungan uang.
 
-### REQ-GEN-007 — Sensitive Data
+Tidak boleh menggunakan `Float` atau tipe floating point lainnya.
 
-Data keuangan user harus diperlakukan sebagai data private dan tidak boleh dikembalikan kepada user lain.
+### REQ-GEN-006 — Rupiah Integer
+
+* Nominal yang dikirim melalui API dan ditampilkan di aplikasi adalah jumlah Rupiah utuh (tanpa pecahan).
+* Semua nominal harus ditampilkan dengan format `Rp` yang konsisten.

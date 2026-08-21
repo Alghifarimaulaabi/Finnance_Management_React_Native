@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-20T13:28:30+07:00",
+  "title": "Design System: Finly",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Botanical Emerald",
+        "canonical": "#255E53",
+        "tonalRamp": ["#0E2621", "#173F37", "#1E4F46", "#255E53", "#377D70", "#54A192", "#94CEBF", "#D7E8E1"]
+      },
+      "income-bg": {
+        "role": "secondary",
+        "displayName": "Income Mint Surface",
+        "canonical": "#DFF8EB",
+        "tonalRamp": ["#0A3B2A", "#157B58", "#1F9D71", "#2BB986", "#61D6A7", "#A6EECD", "#DFF8EB", "#F2FCF7"]
+      },
+      "income-text": {
+        "role": "secondary",
+        "displayName": "Income Forest",
+        "canonical": "#157B58",
+        "tonalRamp": ["#08241A", "#0E4330", "#157B58", "#1C996D", "#29BD88", "#6AE2B3", "#B1F4D6", "#ECFBF3"]
+      },
+      "expense-bg": {
+        "role": "secondary",
+        "displayName": "Expense Coral Surface",
+        "canonical": "#FFE5E1",
+        "tonalRamp": ["#4F1E19", "#8D342C", "#B5453B", "#D45B53", "#EB7C74", "#F6ABA5", "#FFE5E1", "#FFF4F2"]
+      },
+      "expense-text": {
+        "role": "secondary",
+        "displayName": "Expense Terracotta",
+        "canonical": "#D45B53",
+        "tonalRamp": ["#36120F", "#6B2520", "#9E3A32", "#D45B53", "#E87C75", "#F2A7A2", "#FAD4D1", "#FDF1F0"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Warm Pearl Canvas",
+        "canonical": "#F7F8F5",
+        "tonalRamp": ["#202421", "#424844", "#6B726D", "#959D98", "#BFC5C0", "#DEE3DE", "#F0F2EE", "#F7F8F5"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface Pure White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#1A1C1B", "#383D3A", "#5E6460", "#89908B", "#B7BCB8", "#DDE0DC", "#F1F2F0", "#FFFFFF"]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Charcoal Text Primary",
+        "canonical": "#17211D",
+        "tonalRamp": ["#0B110F", "#17211D", "#2B3A34", "#455951", "#688077", "#93A9A1", "#C6D5CF", "#EBF1EE"]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Slate Text Secondary",
+        "canonical": "#78817D",
+        "tonalRamp": ["#1A1E1C", "#313835", "#515A56", "#78817D", "#9EA6A2", "#C2C8C5", "#E1E4E2", "#F4F5F4"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Balance)", "purpose": "Total balance and primary financial figure." },
+      "headline": { "displayName": "Headline", "purpose": "Screen greetings and main surface titles." },
+      "title": { "displayName": "Title", "purpose": "Section headings (Cash flow, Quick actions, Recent transactions)." },
+      "body": { "displayName": "Body", "purpose": "Descriptions and transaction titles." },
+      "label": { "displayName": "Label", "purpose": "Badges, chart axis labels, categories, and timestamps." }
+    },
+    "shadows": [
+      {
+        "name": "hero-ambient",
+        "value": "0 12px 20px rgba(23,63,55,0.23)",
+        "purpose": "Deep organic shadow for the Hero Balance Card."
+      },
+      {
+        "name": "surface-elevation",
+        "value": "0 6px 15px rgba(119,133,125,0.08)",
+        "purpose": "Diffuse soft shadow for white surface and chart cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Standard Android Material easing for balance toggle and segment tab transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "360px" },
+      { "name": "standard", "value": "412px" },
+      { "name": "tablet", "value": "600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Hero Balance Card",
+      "kind": "card",
+      "refersTo": "card-hero",
+      "description": "Emerald hero container displaying net balance, visibility toggle, and month-over-month trend.",
+      "html": "<div class=\"ds-card-hero\"><div class=\"ds-hero-header\"><span class=\"ds-hero-label\">Total saldo</span><span class=\"ds-hero-toggle\">◉</span></div><div class=\"ds-hero-balance\">Rp12.750.000</div><div class=\"ds-hero-footer\"><span class=\"ds-trend-pill\">↗ 8,4%</span><span class=\"ds-hero-hint\">dari bulan lalu</span><span class=\"ds-hero-logo\">finly</span></div></div>",
+      "css": ".ds-card-hero { background: #255E53; color: #FFFFFF; border-radius: 28px; padding: 24px; box-shadow: 0 12px 20px rgba(23,63,55,0.23); font-family: system-ui, Roboto, sans-serif; position: relative; overflow: hidden; } .ds-hero-header { display: flex; justify-content: space-between; align-items: center; } .ds-hero-label { color: #D7E8E1; font-size: 14px; font-weight: 600; } .ds-hero-toggle { color: #D7E8E1; font-size: 15px; cursor: pointer; } .ds-hero-balance { font-size: 31px; font-weight: 800; letter-spacing: -1px; margin-top: 10px; } .ds-hero-footer { display: flex; align-items: center; margin-top: 24px; gap: 8px; } .ds-trend-pill { background: #458675; border-radius: 20px; padding: 4px 10px; font-size: 11px; font-weight: 800; color: #E4FBEA; } .ds-hero-hint { color: #C0D8CF; font-size: 12px; } .ds-hero-logo { margin-left: auto; color: #C7E1D8; font-size: 16px; font-weight: 800; letter-spacing: -0.5px; }"
+    },
+    {
+      "name": "Quick Action Button",
+      "kind": "button",
+      "refersTo": "button-quick-action",
+      "description": "52x52dp tactile action squircle with semantic icon and label.",
+      "html": "<div class=\"ds-action-wrapper\"><button class=\"ds-btn-action ds-action-add\"><span class=\"ds-action-icon\">+</span></button><span class=\"ds-action-label\">Tambah</span></div>",
+      "css": ".ds-action-wrapper { display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: system-ui, Roboto, sans-serif; } .ds-btn-action { width: 52px; height: 52px; border-radius: 18px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s ease, opacity 0.15s ease; } .ds-btn-action:hover { transform: scale(1.05); } .ds-btn-action:active { transform: scale(0.96); opacity: 0.85; } .ds-action-add { background: #3B7A69; color: #FFFFFF; } .ds-action-icon { font-size: 24px; font-weight: 500; } .ds-action-label { font-size: 11px; font-weight: 600; color: #56625C; }"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "chip",
+      "refersTo": "segment-active",
+      "description": "Pill-shaped toggle with elevated active segment.",
+      "html": "<div class=\"ds-segmented\"><button class=\"ds-segment ds-segment-active\">Minggu ini</button><button class=\"ds-segment\">Bulan ini</button></div>",
+      "css": ".ds-segmented { display: inline-flex; background: #E8ECE7; border-radius: 10px; padding: 3px; font-family: system-ui, Roboto, sans-serif; } .ds-segment { border: none; background: transparent; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; color: #7A847F; cursor: pointer; transition: all 0.2s ease; } .ds-segment-active { background: #FFFFFF; color: #30463E; box-shadow: 0 1px 4px rgba(74,88,80,0.1); }"
+    },
+    {
+      "name": "Transaction Row",
+      "kind": "custom",
+      "refersTo": "card-surface",
+      "description": "High-scannability transaction item with category avatar and amount distinction.",
+      "html": "<div class=\"ds-tx-row\"><div class=\"ds-tx-icon ds-tx-rent\">⌂</div><div class=\"ds-tx-info\"><div class=\"ds-tx-title\">Sewa Apartemen</div><div class=\"ds-tx-meta\">Rumah · Hari ini</div></div><div class=\"ds-tx-amount ds-tx-expense\">- Rp850.000</div></div>",
+      "css": ".ds-tx-row { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid #EDF0ED; font-family: system-ui, Roboto, sans-serif; width: 100%; } .ds-tx-icon { width: 41px; height: 41px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; } .ds-tx-rent { background: #EEE9FF; color: #42544D; } .ds-tx-info { flex: 1; margin-left: 12px; } .ds-tx-title { font-size: 13px; font-weight: 800; color: #26332D; } .ds-tx-meta { font-size: 10px; font-weight: 500; color: #8C9691; margin-top: 3px; } .ds-tx-amount { font-size: 13px; font-weight: 800; color: #425049; } .ds-tx-income { color: #24946A; } .ds-tx-expense { color: #425049; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Precision Vault",
+    "overview": "Finly is a structured, confident, and calming personal finance companion. It combines the architectural stability of a modern digital vault with the natural tranquility of botanical emerald and warm pearl tones. The interface emphasizes high-density financial clarity without visual noise: numbers are crisp and bold, data cards are tactile and rounded, and key positions stand out immediately.\n\nFinancial management requires emotional composure and rapid readability. The system delivers this by anchoring screens with a deep emerald Hero Balance Card, surrounded by clean white surface modules resting on a warm pearl canvas. Tonal highlights, soft radial glows, and precise semantic badges provide instant context on cash flow health.",
+    "keyCharacteristics": [
+      "Calm Authority: Deep botanical greens evoke wealth preservation and balance.",
+      "Architectural Scannability: Strong typography weights (800 for numerical totals) paired with generous card paddings.",
+      "Tactile Squircles: Continuous curvature across cards (24-28dp) and action buttons (16-18dp).",
+      "Proactive Semantic Signaling: Clean contrast badges for income (+, mint) and expense (−, coral)."
+    ],
+    "rules": [
+      {
+        "name": "The Hero Balance Rule",
+        "body": "The deep botanical emerald (#255E53) with interior ambient glows is reserved exclusively for the Hero Balance Card and primary accent triggers. All secondary cards must remain crisp pure white (#FFFFFF) on the warm pearl canvas.",
+        "section": "colors"
+      },
+      {
+        "name": "The Semantic Inflow/Outflow Rule",
+        "body": "Mint green is strictly for income and positive budget delta; Coral red is strictly for expenses and limit warnings. Never use these semantic colors for decorative non-financial highlights.",
+        "section": "colors"
+      },
+      {
+        "name": "The Number Weight Rule",
+        "body": "All currency amounts and numeric data points must use fontWeight: '800' with tight negative letter-spacing (-0.3px to -1px) to maintain clear financial prominence over descriptive text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tinted Shadow Rule",
+        "body": "Shadows must never be pure #000000. Use deep forest #173F37 for hero cards and muted slate #77857D for surface cards to preserve organic warmth.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do maintain a minimum 48×48 dp interactive touch target area for all buttons and toggles.",
+      "Do format all monetary amounts with bold font weight (800) and localized currency symbols (e.g. Rp or $).",
+      "Do use tinted ambient shadows (#173F37 and #77857D) rather than raw black shadows.",
+      "Do preserve the Warm Pearl (#F7F8F5) screen canvas to ensure cards stand out cleanly.",
+      "Do provide accessibility labels on icon-only actions (balance visibility toggle, quick actions, profile avatar)."
+    ],
+    "donts": [
+      "Don't use raw black (#000000) for body text or shadows.",
+      "Don't mix sharp angular corners (0-4dp) with Finly's tactile squircle aesthetic (14-28dp).",
+      "Don't use income green for negative alerts or expense coral for positive affirmations.",
+      "Don't clutter the hero card with secondary metrics; keep it dedicated to net balance and core trajectory."
+    ]
+  }
+}

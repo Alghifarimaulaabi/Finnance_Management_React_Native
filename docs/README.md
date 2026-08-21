@@ -1,23 +1,36 @@
 # Project Documentation
 
-> Folder `docs/` adalah **Source of Truth** untuk project.
-> AI agent harus membaca dokumentasi yang relevan sebelum melakukan perubahan.
+> Folder `docs/` adalah **source of truth untuk spesifikasi produk dan keputusan teknis**.
+> AI agent harus membaca dokumentasi yang relevan sebelum melakukan perubahan, lalu memeriksa kode untuk mengetahui status implementasi sebenarnya.
 
 ## Documentation
 
 | File              | Purpose                         |
 | ----------------- | ------------------------------- |
-| `requirements.md` | Kebutuhan project               |
-| `features.md`     | Fitur dan business rules        |
-| `architecture.md` | Arsitektur aplikasi             |
-| `tech-stack.md`   | Teknologi yang digunakan        |
-| `api-contract.md` | Contract API frontend ↔ backend |
-| `database.md`     | Database dan Prisma             |
-| `design.md`       | UI/UX dan design system         |
-| `environment.md`  | Environment variables           |
-| `config.md`       | Konfigurasi project             |
-| `phases.md`       | Tahapan development             |
-| `backlog.md`      | Bug dan task                    |
+| `core/requirements.md` | Kebutuhan dan acceptance criteria |
+| `core/features.md` | Ruang lingkup fitur |
+| `core/architecture.md` | Arsitektur dan boundary |
+| `core/tech-stack.md` | Stack saat ini dan rencana |
+| `core/api-contract.md` | Kontrak API frontend/backend |
+| `core/database.md` | Database dan Prisma |
+| `core/environment.md` | Environment variables |
+| `core/config.md` | Konfigurasi project |
+| `core/phases.md` | Status implementasi per fase |
+
+Design system didefinisikan di `frontend/DESIGN.md`. Product brief didefinisikan di `frontend/PRODUCT.md`.
+
+## Product Scope
+
+* Aplikasi adalah personal finance tracker untuk **satu pengguna pribadi**.
+* Tidak ada login, authentication, model `User`, atau isolasi data per pengguna.
+* Seluruh nilai keuangan menggunakan **Rupiah Indonesia (IDR)**.
+* Aplikasi tidak mendukung kurs, konversi mata uang, atau account dengan mata uang lain.
+
+## Documentation Status Rules
+
+* `requirements.md`, `features.md`, dan `api-contract.md` menjelaskan target/contract, bukan bukti bahwa fitur telah tersedia.
+* `phases.md` adalah tracker status implementasi. Checkbox hanya boleh dicentang setelah pekerjaan ada di kode dan telah diverifikasi.
+* Jika dokumentasi dan kode berbeda, jangan menebak. Laporkan perbedaannya atau perbarui keduanya dalam task yang sama bila perubahan memang diminta.
 
 ## AI Agent Rules
 
@@ -31,6 +44,7 @@
 8. Update dokumentasi jika architecture, API, database, atau feature berubah.
 9. Jangan expose secret atau credential.
 10. Setelah perubahan, lakukan typecheck, lint, dan test yang relevan.
+11. Jangan menambahkan multi-user, authentication, multi-currency, transfer, atau tagihan berulang tanpa perubahan spesifikasi yang eksplisit.
 
 ## Architecture
 
@@ -47,6 +61,8 @@ Express + TypeScript
 ```
 
 Frontend **tidak boleh mengakses database secara langsung**.
+
+Aplikasi ini adalah **aplikasi pribadi single-user**, tidak menggunakan login atau authentication, dan hanya menggunakan **IDR**.
 
 ## Workflow
 

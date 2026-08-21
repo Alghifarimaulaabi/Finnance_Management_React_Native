@@ -47,6 +47,8 @@ Mendukung beberapa jenis account:
 
 Setiap account memiliki saldo masing-masing.
 
+Seluruh account menggunakan Rupiah Indonesia (IDR). Aplikasi belum mendukung konversi mata uang atau kurs.
+
 ### 1.5 Riwayat Transaksi
 
 * Filter berdasarkan tanggal

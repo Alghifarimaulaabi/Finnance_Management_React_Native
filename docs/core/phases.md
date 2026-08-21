@@ -8,34 +8,35 @@ AI Agent harus mengikuti phase secara berurutan dan tidak melewati phase yang be
 
 ## Phase 1 — Project Foundation
 
-**Status:** Pending
+**Status:** In Progress
 
 * [x] Setup React Native + Expo
-* [ ] Setup Express backend
-* [ ] Setup Prisma
-* [ ] Setup PostgreSQL
-* [ ] Setup project structure
-* [ ] Setup environment variables
-* [ ] Setup Git
-* [ ] Setup basic UI/design system
+* [ ] Setup Express backend application
+* [x] Setup Prisma
+* [ ] Verifikasi koneksi PostgreSQL/Supabase
+* [x] Setup project structure
+* [ ] Setup environment runtime untuk backend dan frontend
+* [x] Setup Git
+* [x] Setup basic UI/design system
 
-**Output:** Project dapat dijalankan di mobile dan backend.
+**Output:** Foundation tersedia. Mobile UI prototype dapat dijalankan; backend belum memiliki aplikasi yang dapat dijalankan.
 
 ---
 
 ## Phase 2 — Database
 
-**Status:** Pending
+**Status:** In Progress
 
-* [ ] Membuat Prisma schema
-* [ ] Membuat model `Account`
-* [ ] Membuat model `Transaction`
-* [ ] Membuat model `Category`
-* [ ] Membuat model `Budget`
-* [ ] Membuat model `FinancialGoal`
-* [ ] Membuat relationships
+* [x] Membuat Prisma schema
+* [x] Membuat model `Account`
+* [x] Membuat model `Transaction`
+* [x] Membuat model `Category`
+* [x] Membuat model `Budget`
+* [x] Membuat model `FinancialGoal`
+* [x] Membuat relationships
 * [ ] Menjalankan migration
 * [ ] Membuat seed data untuk default categories
+* [ ] Menegakkan `IDR` sebagai satu-satunya mata uang pada input dan business logic
 
 **Output:** Database siap digunakan.
 
@@ -62,13 +63,13 @@ AI Agent harus mengikuti phase secara berurutan dan tidak melewati phase yang be
 
 ## Phase 4 — Mobile Core
 
-**Status:** Pending
+**Status:** In Progress
 
-* [ ] Setup Expo Router
-* [ ] Setup navigation
+* [x] Setup Expo Router
+* [x] Setup navigation dasar
 * [ ] Setup API client
 * [ ] Setup server state
-* [ ] Membuat Dashboard
+* [x] Membuat prototype UI Dashboard (belum terhubung API)
 * [ ] Membuat Transaction screen
 * [ ] Membuat Add Transaction
 * [ ] Membuat Edit/Delete Transaction

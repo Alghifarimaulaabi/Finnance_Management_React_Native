@@ -6,3 +6,107 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum AccountType {
+  cash
+  bank
+  ewallet
+  other
+}
+
+enum TransactionType {
+  income
+  expense
+}
+
+enum GoalStatus {
+  active
+  completed
+}
+
+// ─── Models ───────────────────────────────────────────────────────────────────
+
+/// Dompet / rekening user (Cash, Bank, E-wallet, dll.)
+model Account {
+  id        String      @id @default(cuid())
+  name      String
+  type      AccountType
+  balance   Decimal     @default(0) @db.Decimal(19, 4)
+  currency  String      @default("IDR")
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  transactions Transaction[]
+
+  @@map("accounts")
+}
+
+/// Transaksi pemasukan / pengeluaran
+model Transaction {
+  id         String          @id @default(cuid())
+  type       TransactionType
+  amount     Decimal         @db.Decimal(19, 4)
+  note       String?
+  date       DateTime
+  accountId  String
+  categoryId String
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  account  Account  @relation(fields: [accountId], references: [id], onDelete: Restrict)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@index([accountId])
+  @@index([categoryId])
+  @@index([date])
+  @@index([type])
+  @@map("transactions")
+}
+
+/// Kategori transaksi (default + custom)
+model Category {
+  id        String          @id @default(cuid())
+  name      String
+  type      TransactionType
+  isDefault Boolean         @default(false)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  transactions Transaction[]
+  budgets      Budget[]
+
+  @@map("categories")
+}
+
+/// Budget bulanan per kategori
+model Budget {
+  id         String   @id @default(cuid())
+  amount     Decimal  @db.Decimal(19, 4)
+  month      Int
+  year       Int
+  categoryId String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, month, year])
+  @@index([month, year])
+  @@map("budgets")
+}
+
+/// Target keuangan (menabung, beli barang, dana darurat, dll.)
+model FinancialGoal {
+  id           String     @id @default(cuid())
+  name         String
+  targetAmount Decimal    @db.Decimal(19, 4)
+  savedAmount  Decimal    @default(0) @db.Decimal(19, 4)
+  targetDate   DateTime?
+  status       GoalStatus @default(active)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@map("financial_goals")
+}
